@@ -343,6 +343,16 @@ ImageButton_2.Position = UDim2.new(0.916267991, 0, 0.102605954, 0)
 ImageButton_2.Size = UDim2.new(0, 24, 0, 24)
 ImageButton_2.Image = "http://www.roblox.com/asset/?id=4430382116"]]
 
+local function count_children(parent, classname)
+	local i = 0
+	for _, v in pairs(parent:GetChildren()) do
+		if v.ClassName == classname then
+			i = i + 1 -- WHY WONT SYNAPSE SUPPORT += GET OUT OF YOUR FUCKING ROCK!!!!!!!!!!!!!!!!!!!!!!!!!!!
+		end
+	end
+	return i
+end
+
 local Window = {}
 
 function Window:CreateWindow(props)
@@ -370,6 +380,10 @@ function Window:CreateWindow(props)
 	MainFrame.BorderSizePixel = 0
 	MainFrame.Position = UDim2.new(0.326173425, 0, 0.293639868, 0)
 	MainFrame.Size = UDim2.new(0.347653151, 0, 0.411636829, 0)
+	
+	local UIStroke = Instance.new('UIStroke')
+	UIStroke.Color = Color3.fromRGB(45, 45, 45)
+	UIStroke.Parent = MainFrame
 
 	Navigation.Name = "Navigation"
 	Navigation.Parent = MainFrame
@@ -412,6 +426,7 @@ function Window:CreateWindow(props)
 
 	UIListLayout.Parent = Tabs
 	UIListLayout.FillDirection = Enum.FillDirection.Horizontal
+	UIListLayout_2.SortOrder = Enum.SortOrder.Name
 
 	Page.Name = "Page"
 	Page.Parent = MainFrame
@@ -422,11 +437,90 @@ function Window:CreateWindow(props)
 	Page.Position = UDim2.new(0.022883296, 0, 0.162580356, 0)
 	Page.Size = UDim2.new(0.956521749, 0, 0.812901795, 0)
 	Page.ScrollBarThickness = 5
+	
+	local UIStroke_1 = Instance.new('UIStroke')
+	UIStroke.Color = Color3.fromRGB(29, 29, 29)
+	UIStroke.Parent = Page
 
 	UIListLayout_2.Parent = Page
 	UIListLayout_2.Padding = UDim.new(0, 2)
+	UIListLayout_2.SortOrder = Enum.SortOrder.Name
 	
-	return DH_GUI
+	local Window = {}
+	
+	function Window:Tab(title)
+		local _1 = Instance.new("TextButton")
+
+		_1.Name = tostring(count_children(Tabs, 'TextButton'))
+		_1.Parent = Tabs
+		_1.BackgroundColor3 = Color3.fromRGB(34, 69, 111)
+		_1.Position = UDim2.new(0, 0, -1.52587893e-06, 0)
+		_1.Font = Enum.Font.Code
+		_1.Text = title or 'Tab'
+		_1.Size = UDim2.new(0, string.len(_1.Text)*12, 1, 0)
+		_1.TextColor3 = Color3.fromRGB(255, 255, 255)
+		_1.TextScaled = true
+		_1.TextSize = 14.000
+		_1.TextWrapped = true
+		
+		local PageFactory = {}
+		local children = {}
+		
+		function PageFactory:Toggle(title,status,callback)
+			local active = status or false
+			local images = {
+				[true] = 'http://www.roblox.com/asset/?id=8589545938';
+				[false] = '';
+			}
+			
+			local TOGGLE = Instance.new('Frame')
+			local Title_3 = Instance.new('TextLabel')
+			local Tick = Instance.new('ImageButton')
+			
+			TOGGLE.Name = "TOGGLE"
+			TOGGLE.Parent = Page
+			TOGGLE.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+			TOGGLE.BackgroundTransparency = 1.000
+			TOGGLE.Position = UDim2.new(0, 0, -1.17375301e-07, 0)
+			TOGGLE.Size = UDim2.new(1, 0, -0.0230769236, 44)
+
+			Title_3.Name = "Title"
+			Title_3.Parent = TOGGLE
+			Title_3.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+			Title_3.BackgroundTransparency = 1.000
+			Title_3.Position = UDim2.new(0.0215311013, 0, 0.102605954, 0)
+			Title_3.Size = UDim2.new(0.88516748, 0, 0.794788122, 0)
+			Title_3.Font = Enum.Font.Code
+			Title_3.Text = title or 'My toggle'
+			Title_3.TextColor3 = Color3.fromRGB(255, 255, 255)
+			Title_3.TextScaled = true
+			Title_3.TextSize = 14.000
+			Title_3.TextWrapped = true
+			Title_3.TextXAlignment = Enum.TextXAlignment.Left
+
+			Tick.Name = "Tick"
+			Tick.Parent = TOGGLE
+			Tick.BackgroundColor3 = Color3.fromRGB(34, 69, 111)
+			Tick.Position = UDim2.new(0.925837338, 0, 0.136807933, 0)
+			Tick.Size = UDim2.new(0, 21, 0, 21)
+			Tick.Image = images[active]
+			Tick.ImageColor3 = Color3.fromRGB(0, 170, 255)
+			
+			Tick.MouseButton1Click:Connect(function()
+				active = not active
+				Tick.Image = images[active]
+				if callback then
+					callback(active)
+				end
+			end)
+			
+			return Tick
+		end
+		
+		return PageFactory, _1
+	end
+	
+	return Window, DH_GUI
 end
 
 return Window
