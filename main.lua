@@ -486,7 +486,7 @@ function Window:CreateWindow(props)
 				if binding == true then
 					Bind.Text = 'Press a key...'
 				else
-					Bind.Text = bind.KeyCode.Name
+					Bind.Text = bind.Name
 				end
 			end)
 			
@@ -494,7 +494,7 @@ function Window:CreateWindow(props)
 				if not gpe then
 					if binding and input.KeyCode then
 						bind = input.KeyCode
-						Bind.Text = bind.KeyCode.Name
+						Bind.Text = bind.Name
 						binding = false
 					elseif binding == false and bind ~= nil and input.KeyCode == bind then
 						if callback ~= nil then
