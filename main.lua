@@ -439,7 +439,10 @@ function Window:CreateWindow(props)
 		end
 		
 		function PageFactory:Bind(title,default,callback)
-			local bind = default or Enum.KeyCode.E
+			local bind = default
+			if bind == nil then
+				bind = Enum.KeyCode.E
+			end
 			local binding = false
 			
 			local BIND = Instance.new("Frame")
