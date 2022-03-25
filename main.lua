@@ -261,7 +261,12 @@ function Window:CreateWindow(props)
 		end
 
 		function PageFactory:Toggle(title,status,callback)
-			local active = status or false
+			local active
+			if status == nil then
+				active = false
+			else
+				active = status
+			end
 			local images = {
 				[true] = 'http://www.roblox.com/asset/?id=8589545938';
 				[false] = '';
@@ -302,7 +307,7 @@ function Window:CreateWindow(props)
 			Tick.MouseButton1Click:Connect(function()
 				active = not active
 				Tick.Image = images[active]
-				if callback then
+				if callback ~= nil then
 					callback(active)
 				end
 			end)
