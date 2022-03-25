@@ -411,7 +411,7 @@ function Window:CreateWindow(props)
 	ImageButton.BackgroundTransparency = 1.000
 	ImageButton.BorderSizePixel = 0
 	ImageButton.Position = UDim2.new(0.95599997, 0, 0.100000001, 0)
-	ImageButton.Size = UDim2.new(0.038901601, 0, 0.850000739, 0)
+	ImageButton.Size = UDim2.new(0.956, 0,0.1, 0)
 	ImageButton.Image = "http://www.roblox.com/asset/?id=54479706"
 
 	Tabs.Name = "Tabs"
