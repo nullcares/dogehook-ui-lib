@@ -439,7 +439,7 @@ function Window:CreateWindow(props)
 		end
 		
 		function PageFactory:Bind(title,default,callback)
-			local bind = default or Enum.KeyCode.E
+			local bind = default
 			local binding = false
 			
 			local BIND = Instance.new("Frame")
@@ -472,7 +472,7 @@ function Window:CreateWindow(props)
 			Bind.Position = UDim2.new(0.691387415, 0, 0.0999996811, 0)
 			Bind.Size = UDim2.new(0.28493008, 0, 0.800000012, 0)
 			Bind.Font = Enum.Font.Code
-			Bind.Text = bind.Name
+			Bind.Text = bind.Name or 'None'
 			Bind.TextColor3 = Color3.fromRGB(255, 255, 255)
 			Bind.TextScaled = true
 			Bind.TextSize = 14.000
@@ -493,7 +493,7 @@ function Window:CreateWindow(props)
 						bind = input
 						Bind.Text = bind.KeyCode.Name
 						binding = false
-					elseif binding == false and input.KeyCode == bind then
+					elseif binding == false and bind ~= nil and input.KeyCode == bind then
 						if callback ~= nil then
 							callback(input.KeyCode)
 						end
