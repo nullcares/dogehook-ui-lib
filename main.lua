@@ -353,6 +353,18 @@ local function count_children(parent, classname)
 	return i
 end
 
+local function switch_tabs(page, children)
+	for _, v in pairs(page:GetChildren()) do
+		if v:IsA('Frame') then
+			v.Parent = nil
+		end
+	end
+	
+	for _, v in pairs(children) do
+		v.Parent = page
+	end
+end
+
 local Window = {}
 
 function Window:CreateWindow(props)
@@ -463,8 +475,13 @@ function Window:CreateWindow(props)
 		_1.TextSize = 14.000
 		_1.TextWrapped = true
 		
-		local PageFactory = {}
 		local children = {}
+		
+		_1.MouseButton1Click:Connect(function()
+			switch_tabs(Page, children)
+		end)
+		
+		local PageFactory = {}
 		
 		function PageFactory:Toggle(title,status,callback)
 			local active = status or false
@@ -478,7 +495,6 @@ function Window:CreateWindow(props)
 			local Tick = Instance.new('ImageButton')
 			
 			TOGGLE.Name = "TOGGLE"
-			TOGGLE.Parent = Page
 			TOGGLE.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 			TOGGLE.BackgroundTransparency = 1.000
 			TOGGLE.Position = UDim2.new(0, 0, -1.17375301e-07, 0)
@@ -513,6 +529,8 @@ function Window:CreateWindow(props)
 					callback(active)
 				end
 			end)
+			
+			table.insert(children, TOGGLE)
 			
 			return Tick
 		end
