@@ -1,4 +1,5 @@
--- nulare#4408 my first ever ui lib :v
+-- nulare#4408
+-- kinda messy but its my first attempt
 
 local ts = game:GetService('TweenService')
 local sg = game:GetService('StarterGui')
@@ -44,7 +45,7 @@ function Window:CreateWindow(props)
 	}
 	
 	local title = props['Name'] or '[ dogehook gui ]'
-	local bind = Enum.KeyCode.LeftControl
+	--local bind = props['KeyBind'] or Enum.KeyCode.LeftControl
 
 	local DH_GUI = Instance.new("ScreenGui")
 	local MainFrame = Instance.new("Frame")
