@@ -60,7 +60,7 @@ function Window:CreateWindow(props)
 	--Properties:
 
 	DH_GUI.Name = "DH_GUI"
-	DH_GUI.Parent = game.Players.LocalPlayer:WaitForChild('PlayerGui') --game:GetService('CoreGui')
+	DH_GUI.Parent = game:GetService('CoreGui')
 	DH_GUI.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
 	DH_GUI.ResetOnSpawn = false
 	
@@ -146,7 +146,7 @@ function Window:CreateWindow(props)
 
 	UIListLayout.Parent = Tabs
 	UIListLayout.FillDirection = Enum.FillDirection.Horizontal
-	UIListLayout_2.SortOrder = Enum.SortOrder.Name
+	--UIListLayout_2.SortOrder = Enum.SortOrder.Name
 
 	Page.Name = "Page"
 	Page.Parent = MainFrame
@@ -164,7 +164,7 @@ function Window:CreateWindow(props)
 
 	UIListLayout_2.Parent = Page
 	UIListLayout_2.Padding = UDim.new(0, 2)
-	UIListLayout_2.SortOrder = Enum.SortOrder.Name
+	--UIListLayout_2.SortOrder = Enum.SortOrder.Name
 
 	local dragging
 	local dragInput
