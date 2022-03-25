@@ -490,7 +490,7 @@ function Window:CreateWindow(props)
 			uis.InputBegan:Connect(function(input, gpe)
 				if not gpe then
 					if binding and input.KeyCode then
-						bind = input
+						bind = input.KeyCode
 						Bind.Text = bind.KeyCode.Name
 						binding = false
 					elseif binding == false and bind ~= nil and input.KeyCode == bind then
