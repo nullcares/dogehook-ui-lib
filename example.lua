@@ -1,3 +1,5 @@
+-- this should give you a basic idea of how to use it
+
 local engine = loadstring(game:HttpGet('https://raw.githubusercontent.com/nullcares/dogehook-ui-lib/main/main.lua',true))()
 
 local w = engine:CreateWindow({
@@ -10,7 +12,7 @@ label:Update({
 	['Font'] = Enum.Font.Bangers;
 	['TextColor3'] = Color3.fromRGB(0, 255, 0);
 })
-local TAB_OBJECT = tab:Toggle('Toggle me!', true, function(bool)
+local TOGGLE_OBJECT = tab:Toggle('Toggle me!', true, function(bool)
 	print(bool)
 end)
 local BUTTON_OBJECT = tab:Button('Send notification', function()
