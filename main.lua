@@ -146,7 +146,7 @@ function Window:CreateWindow(props)
 
 	UIListLayout.Parent = Tabs
 	UIListLayout.FillDirection = Enum.FillDirection.Horizontal
-	--UIListLayout_2.SortOrder = Enum.SortOrder.Name
+	UIListLayout_2.SortOrder = Enum.SortOrder.LayoutOrder
 
 	Page.Name = "Page"
 	Page.Parent = MainFrame
@@ -164,7 +164,7 @@ function Window:CreateWindow(props)
 
 	UIListLayout_2.Parent = Page
 	UIListLayout_2.Padding = UDim.new(0, 2)
-	--UIListLayout_2.SortOrder = Enum.SortOrder.Name
+	UIListLayout_2.SortOrder = Enum.SortOrder.LayoutOrder
 
 	local dragging
 	local dragInput
